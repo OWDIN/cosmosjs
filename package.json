@@ -1,8 +1,54 @@
 {
-  "name": "@cosmostation/cosmosjs",
-  "version": "0.4.1",
+  "_from": "@cosmostation/cosmosjs",
+  "_id": "@cosmostation/cosmosjs@0.4.1",
+  "_inBundle": false,
+  "_integrity": "sha512-wuT/Y0gpnY8OVltL5pnedFUFCsWIel35Amd5udqRZhpJbRMlTLSFF1C+i88jWFecEEPY/L8As7Sd4eYbpGMbuQ==",
+  "_location": "/@cosmostation/cosmosjs",
+  "_phantomChildren": {
+    "bs58check": "2.1.2",
+    "create-hash": "1.2.0",
+    "create-hmac": "1.1.7",
+    "pbkdf2": "3.0.17",
+    "randombytes": "2.1.0",
+    "safe-buffer": "5.1.2",
+    "tiny-secp256k1": "1.1.3",
+    "typeforce": "1.18.0",
+    "unorm": "1.6.0",
+    "wif": "2.0.6"
+  },
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@cosmostation/cosmosjs",
+    "name": "@cosmostation/cosmosjs",
+    "escapedName": "@cosmostation%2fcosmosjs",
+    "scope": "@cosmostation",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@cosmostation/cosmosjs/-/cosmosjs-0.4.1.tgz",
+  "_shasum": "5620719e57fb2cdefa835734ac98f97e823e355c",
+  "_spec": "@cosmostation/cosmosjs",
+  "_where": "/Users/peter/devel/Hupax/API/cosmos-api",
+  "author": {
+    "name": "Cosmostation"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "bech32": "^1.1.3",
+    "bip32": "^1.0.2",
+    "bip39": "^2.5.0",
+    "bitcoinjs-lib": "^4.0.2",
+    "node-fetch": "^2.6.0",
+    "secp256k1": "^3.6.2"
+  },
+  "deprecated": false,
   "description": "A JavasSript Open Source Library for Cosmos Network, IRISnet and Kava",
-  "main": "./src/index.js",
   "engines": {
     "node": ">=8.0.0"
   },
@@ -16,17 +62,11 @@
     "iris",
     "kava"
   ],
+  "license": "MIT",
+  "main": "./src/index.js",
+  "name": "@cosmostation/cosmosjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Cosmostation",
-  "license": "MIT",
-  "dependencies": {
-    "bech32": "^1.1.3",
-    "bip32": "^1.0.2",
-    "bip39": "^2.5.0",
-    "bitcoinjs-lib": "^4.0.2",
-    "node-fetch": "^2.6.0",
-    "secp256k1": "^3.6.2"
-  }
+  "version": "0.4.1"
 }

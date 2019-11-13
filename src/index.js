@@ -81,13 +81,30 @@ Cosmos.prototype.getAccounts = function(address) {
 	let accountsApi = "";
 	if (this.chainId.indexOf("cosmoshub") != -1 || 
 		this.chainId.indexOf("kava") != -1 ||
-		this.chainId.indexOf("gaia") != -1) {
+		this.chainId.indexOf("gaia") != -1 ||
+		this.chainId.indexOf("hupayx") != -1 ||
+		this.chainId.indexOf("peter") != -1) {
 		accountsApi = "/auth/accounts/";
 	} else if (this.chainId.indexOf("irishub") != -1) {
 		accountsApi = "/bank/accounts/";
 	}
 	return fetch(this.url + accountsApi + address)
 	.then(response => response.json())
+}
+
+Cosmos.prototype.getBalance = function(address) {
+	let balanceApi = "";
+	if (this.chainId.indexOf("cosmoshub") != -1 ||
+		this.chainId.indexOf("kava") != -1 ||
+		this.chainId.indexOf("gaia") != -1 ||
+		this.chainId.indexOf("hupayx") != -1 ||
+		this.chainId.indexOf("peter") != -1) {
+		balanceApi = "/bank/balances/";
+	} else if (this.chainId.indexOf("irishub") != -1) {
+		balanceApi = "/bank/balances/";
+	}
+	return fetch(this.url + balanceApi + address)
+		.then(response => response.json())
 }
 
 Cosmos.prototype.getAddress = function(mnemonic) {
@@ -709,7 +726,9 @@ Cosmos.prototype.sign = function(stdSignMsg, ecpairPriv, modeType = "sync") {
 	let signedTx = new Object;
 	if (this.chainId.indexOf("cosmoshub") != -1 || 
 		this.chainId.indexOf("kava") != -1 ||
-		this.chainId.indexOf("gaia") != -1) {
+		this.chainId.indexOf("gaia") != -1 ||
+		this.chainId.indexOf("hupayx") != -1 ||
+		this.chainId.indexOf("peter") != -1) {
 		signedTx = {
 		    "tx": {
 		        "msg": stdSignMsg.json.msgs,
@@ -756,7 +775,9 @@ Cosmos.prototype.broadcast = function(signedTx) {
 	let broadcastApi = "";
 	if (this.chainId.indexOf("cosmoshub") != -1 || 
 		this.chainId.indexOf("kava") != -1 ||
-		this.chainId.indexOf("gaia") != -1) {
+		this.chainId.indexOf("gaia") != -1 ||
+		this.chainId.indexOf("hupayx") != -1 ||
+		this.chainId.indexOf("peter") != -1) {
 		broadcastApi = "/txs";
 	} else if (this.chainId.indexOf("irishub") != -1) {
 		broadcastApi = "/tx/broadcast";
@@ -770,6 +791,33 @@ Cosmos.prototype.broadcast = function(signedTx) {
 		body: JSON.stringify(signedTx)
 	})
 	.then(response => response.json())
+}
+
+Cosmos.prototype.createAccounts = function(createAccountsTx) {
+	let createAccountsApi = "";
+	if (this.chainId.indexOf("hupayx") != -1 ||
+		this.chainId.indexOf("peter") != -1) {
+		createAccountsApi = "/keys";
+	}
+
+	return fetch(this.url + createAccountsApi, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: createAccountsTx
+	})
+		.then(response => response.json())
+}
+
+Cosmos.prototype.listAccounts = function() {
+	let listAccountsApi = "";
+	if (this.chainId.indexOf("hupayx") != -1 ||
+		this.chainId.indexOf("peter") != -1) {
+		listAccountsApi = "/keys";
+	}
+	return fetch(this.url + listAccountsApi)
+		.then(response => response.json())
 }
 
 module.exports = {
