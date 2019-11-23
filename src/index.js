@@ -820,6 +820,23 @@ Cosmos.prototype.listAccounts = function() {
 		.then(response => response.json())
 }
 
+Cosmos.prototype.recoverAccounts = function(name, recoverAccountsTx) {
+	let recoverAccountsApi = "";
+	if (this.chainId.indexOf("hupayx") != -1 ||
+		this.chainId.indexOf("peter") != -1) {
+		recoverAccountsApi = "/keys";
+	}
+
+	return fetch(this.url + recoverAccountsApi + name + "/recover", {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: recoverAccountsTx
+	})
+		.then(response => response.json())
+}
+
 module.exports = {
 	network: network
 }
