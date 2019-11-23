@@ -849,7 +849,7 @@ Cosmos.prototype.deleteAccounts = function(name, deleteAccountsTx) {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(deleteAccountsTx)
+        body: deleteAccountsTx
     })
         .then(response => response.json())
 }
