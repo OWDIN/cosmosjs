@@ -805,7 +805,7 @@ Cosmos.prototype.createAccounts = function(createAccountsTx) {
 		headers: {
 			'Content-Type': 'application/json'
 		},
-		body: createAccountsTx
+		body: JSON.stringify(createAccountsTx)
 	})
 		.then(response => response.json())
 }
@@ -832,7 +832,7 @@ Cosmos.prototype.recoverAccounts = function(name, recoverAccountsTx) {
 		headers: {
 			'Content-Type': 'application/json'
 		},
-		body: recoverAccountsTx
+		body: JSON.stringify(recoverAccountsTx)
 	})
 		.then(response => response.json())
 }
