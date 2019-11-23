@@ -824,7 +824,7 @@ Cosmos.prototype.recoverAccounts = function(name, recoverAccountsTx) {
 	let recoverAccountsApi = "";
 	if (this.chainId.indexOf("hupayx") != -1 ||
 		this.chainId.indexOf("peter") != -1) {
-		recoverAccountsApi = "/keys";
+		recoverAccountsApi = "/keys/";
 	}
 
 	return fetch(this.url + recoverAccountsApi + name + "/recover", {
