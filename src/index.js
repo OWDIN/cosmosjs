@@ -837,6 +837,23 @@ Cosmos.prototype.recoverAccounts = function(name, recoverAccountsTx) {
 		.then(response => response.json())
 }
 
+Cosmos.prototype.deleteAccounts = function(name, deleteAccountsTx) {
+    let deleteAccountsApi = "";
+    if (this.chainId.indexOf("hupayx") != -1 ||
+        this.chainId.indexOf("peter") != -1) {
+        deleteAccountsApi = "/keys/";
+    }
+
+    return fetch(this.url + deleteAccountsApi + name, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: deleteAccountsTx
+    })
+        .then(response => response.json())
+}
+
 module.exports = {
 	network: network
 }
