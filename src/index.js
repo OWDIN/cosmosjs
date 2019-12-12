@@ -107,6 +107,21 @@ Cosmos.prototype.getBalance = function(address) {
 		.then(response => response.json())
 }
 
+Cosmos.prototype.checkTxs = function(address) {
+	let txsApi = "";
+	if (this.chainId.indexOf("cosmoshub") != -1 ||
+		this.chainId.indexOf("kava") != -1 ||
+		this.chainId.indexOf("gaia") != -1 ||
+		this.chainId.indexOf("hupayx") != -1 ||
+		this.chainId.indexOf("peter") != -1) {
+		txsApi = "/txs/";
+	} else if (this.chainId.indexOf("irishub") != -1) {
+		txsApi = "/txs/";
+	}
+	return fetch(this.url + txsApi + address)
+		.then(response => response.json())
+}
+
 Cosmos.prototype.getAddress = function(mnemonic) {
 	if (typeof mnemonic !== "string") {
 	    throw new Error("mnemonic expects a string")
