@@ -415,6 +415,82 @@ Cosmos.prototype.NewStdMsg = function(input) {
 			],
 			sequence: String(input.sequence)
 		}
+	} else if (input.type == "cosmos-sdk/MsgCreateValidator") {
+		stdSignMsg.json =
+		{
+			account_number: String(input.account_number),
+			chain_id: this.chainId,
+			fee: {
+				amount: [
+					{
+						amount: String(input.fee),
+						denom: input.feeDenom
+					}
+				],
+				gas: String(input.gas)
+			},
+			memo: input.memo,
+			msgs: [
+				{
+					type: input.type,
+					value: {
+						description: {
+							moniker: input.moniker,
+							identity: input.identity,
+							website: input.website,
+							details: input.details
+						},
+						commission: {
+							rate: input.rate,
+							max_rate: input.max_rate,
+							max_change_rate: input.max_change_rate
+						},
+						min_self_delegation: input.min_self_delegation,
+						delegator_address: input.delegator_address,
+						validator_address: input.validator_address,
+						pubkey: input.pubkey,
+						value: {
+							denom: input.feeDenom,
+							amount: String(input.amount)
+						}
+					}
+				}
+			],
+			sequence: String(input.sequence)
+		}
+	} else if (input.type == "cosmos-sdk/MsgEditValidator") {
+		stdSignMsg.json =
+		{
+			account_number: String(input.account_number),
+			chain_id: this.chainId,
+			fee: {
+				amount: [
+					{
+						amount: String(input.fee),
+						denom: input.feeDenom
+					}
+				],
+				gas: String(input.gas)
+			},
+			memo: input.memo,
+			msgs: [
+				{
+					type: input.type,
+					value: {
+						Description: {
+							moniker: input.moniker,
+							identity: input.identity,
+							website: input.website,
+							details: input.details
+						},
+						address: input.validator_address,
+						commission_rate: input.commission_rate,
+						min_self_delegation: input.min_self_delegation
+					}
+				}
+			],
+			sequence: String(input.sequence)
+		}
 	} else if (input.type == "irishub/bank/Send") {
 	    stdSignMsg.json =
 		{
