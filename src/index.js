@@ -450,7 +450,7 @@ Cosmos.prototype.NewStdMsg = function(input) {
 						validator_address: input.validator_address,
 						pubkey: input.pubkey,
 						value: {
-							denom: input.feeDenom,
+							denom: input.denom,
 							amount: String(input.amount)
 						}
 					}
@@ -485,7 +485,7 @@ Cosmos.prototype.NewStdMsg = function(input) {
 						},
 						address: input.validator_address,
 						commission_rate: input.commission_rate,
-						min_self_delegation: input.min_self_delegation
+						min_self_delegation: null
 					}
 				}
 			],
