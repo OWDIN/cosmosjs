@@ -107,7 +107,7 @@ Cosmos.prototype.getBalance = function(address) {
 		.then(response => response.json())
 }
 
-Cosmos.prototype.checkTxs = function(address) {
+Cosmos.prototype.checkTxs = function(txhash) {
 	let txsApi = "";
 	if (this.chainId.indexOf("cosmoshub") != -1 ||
 		this.chainId.indexOf("kava") != -1 ||
@@ -118,7 +118,7 @@ Cosmos.prototype.checkTxs = function(address) {
 	} else if (this.chainId.indexOf("irishub") != -1) {
 		txsApi = "/txs/";
 	}
-	return fetch(this.url + txsApi + address)
+	return fetch(this.url + txsApi + txhash)
 		.then(response => response.json())
 }
 
