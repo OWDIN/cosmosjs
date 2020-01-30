@@ -122,6 +122,21 @@ Cosmos.prototype.checkTxs = function(address) {
 		.then(response => response.json())
 }
 
+Cosmos.prototype.searchTxs = function(page, limit, address) {
+	let txsApi = "";
+	if (this.chainId.indexOf("cosmoshub") != -1 ||
+		this.chainId.indexOf("kava") != -1 ||
+		this.chainId.indexOf("gaia") != -1 ||
+		this.chainId.indexOf("hupayx") != -1 ||
+		this.chainId.indexOf("peter") != -1) {
+		txsApi = "/txs?&";
+	} else if (this.chainId.indexOf("irishub") != -1) {
+		txsApi = "/txs?&";
+	}
+	return fetch(this.url + txsApi + "page=" + page + "&limit=" + limit + "&message.action=send&transfer.recipient=" + address)
+		.then(response => response.json())
+}
+
 Cosmos.prototype.getAddress = function(mnemonic) {
 	if (typeof mnemonic !== "string") {
 	    throw new Error("mnemonic expects a string")
