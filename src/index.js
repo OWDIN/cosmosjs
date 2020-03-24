@@ -93,6 +93,22 @@ Cosmos.prototype.getAccounts = function(address) {
 	.then(response => response.json())
 }
 
+Cosmos.prototype.getDelegations = function(address) {
+	let delegationsApi = "";
+	if (this.chainId.indexOf("cosmoshub") != -1 ||
+		this.chainId.indexOf("kava") != -1 ||
+		this.chainId.indexOf("gaia") != -1 ||
+		this.chainId.indexOf("hupayx") != -1 ||
+		this.chainId.indexOf("owdin") != -1 ||
+		this.chainId.indexOf("peter") != -1) {
+		delegationsApi = "/staking/delegators/";
+	} else if (this.chainId.indexOf("irishub") != -1) {
+		delegationsApi = "/staking/delegators/";
+	}
+	return fetch(this.url + delegationsApi + address + "/delegations")
+		.then(response => response.json())
+}
+
 Cosmos.prototype.getBalance = function(address) {
 	let balanceApi = "";
 	if (this.chainId.indexOf("cosmoshub") != -1 ||
