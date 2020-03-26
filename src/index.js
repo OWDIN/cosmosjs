@@ -920,28 +920,6 @@ Cosmos.prototype.broadcast = function(signedTx) {
 	})
 	.then(response => response.json())
 }
-Cosmos.prototype.proposals = function(signedTx) {
-	let proposalsApi = "";
-	if (this.chainId.indexOf("cosmoshub") != -1 ||
-		this.chainId.indexOf("kava") != -1 ||
-		this.chainId.indexOf("gaia") != -1 ||
-		this.chainId.indexOf("hupayx") != -1 ||
-		this.chainId.indexOf("owdin") != -1 ||
-		this.chainId.indexOf("peter") != -1) {
-		proposalsApi = "/gov/proposals";
-	} else if (this.chainId.indexOf("irishub") != -1) {
-		proposalsApi = "/gov/proposals";
-	}
-
-	return fetch(this.url + proposalsApi, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(signedTx)
-	})
-		.then(response => response.json())
-}
 
 Cosmos.prototype.createAccounts = function(createAccountsTx) {
 	let createAccountsApi = "";
