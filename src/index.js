@@ -79,14 +79,14 @@ Cosmos.prototype.setPath = function(path) {
 
 Cosmos.prototype.getAccounts = function(address) {
 	let accountsApi = "";
-	if (this.chainId.indexOf("cosmoshub") != -1 || 
-		this.chainId.indexOf("kava") != -1 ||
-		this.chainId.indexOf("gaia") != -1 ||
-		this.chainId.indexOf("hupayx") != -1 ||
-		this.chainId.indexOf("owdin") != -1 ||
-		this.chainId.indexOf("peter") != -1) {
+	if (this.chainId.indexOf("cosmoshub") !== -1 ||
+		this.chainId.indexOf("kava") !== -1 ||
+		this.chainId.indexOf("gaia") !== -1 ||
+		this.chainId.indexOf("hupayx") !== -1 ||
+		this.chainId.indexOf("owdin") !== -1 ||
+		this.chainId.indexOf("peter") !== -1) {
 		accountsApi = "/auth/accounts/";
-	} else if (this.chainId.indexOf("irishub") != -1) {
+	} else if (this.chainId.indexOf("irishub") !== -1) {
 		accountsApi = "/bank/accounts/";
 	}
 	return fetch(this.url + accountsApi + address)
@@ -95,14 +95,14 @@ Cosmos.prototype.getAccounts = function(address) {
 
 Cosmos.prototype.getDelegations = function(address) {
 	let delegationsApi = "";
-	if (this.chainId.indexOf("cosmoshub") != -1 ||
-		this.chainId.indexOf("kava") != -1 ||
-		this.chainId.indexOf("gaia") != -1 ||
-		this.chainId.indexOf("hupayx") != -1 ||
-		this.chainId.indexOf("owdin") != -1 ||
-		this.chainId.indexOf("peter") != -1) {
+	if (this.chainId.indexOf("cosmoshub") !== -1 ||
+		this.chainId.indexOf("kava") !== -1 ||
+		this.chainId.indexOf("gaia") !== -1 ||
+		this.chainId.indexOf("hupayx") !== -1 ||
+		this.chainId.indexOf("owdin") !== -1 ||
+		this.chainId.indexOf("peter") !== -1) {
 		delegationsApi = "/staking/delegators/";
-	} else if (this.chainId.indexOf("irishub") != -1) {
+	} else if (this.chainId.indexOf("irishub") !== -1) {
 		delegationsApi = "/staking/delegators/";
 	}
 	return fetch(this.url + delegationsApi + address + "/delegations")
@@ -111,14 +111,14 @@ Cosmos.prototype.getDelegations = function(address) {
 
 Cosmos.prototype.getBalance = function(address) {
 	let balanceApi = "";
-	if (this.chainId.indexOf("cosmoshub") != -1 ||
-		this.chainId.indexOf("kava") != -1 ||
-		this.chainId.indexOf("gaia") != -1 ||
-		this.chainId.indexOf("hupayx") != -1 ||
-		this.chainId.indexOf("owdin") != -1 ||
-		this.chainId.indexOf("peter") != -1) {
+	if (this.chainId.indexOf("cosmoshub") !== -1 ||
+		this.chainId.indexOf("kava") !== -1 ||
+		this.chainId.indexOf("gaia") !== -1 ||
+		this.chainId.indexOf("hupayx") !== -1 ||
+		this.chainId.indexOf("owdin") !== -1 ||
+		this.chainId.indexOf("peter") !== -1) {
 		balanceApi = "/bank/balances/";
-	} else if (this.chainId.indexOf("irishub") != -1) {
+	} else if (this.chainId.indexOf("irishub") !== -1) {
 		balanceApi = "/bank/balances/";
 	}
 	return fetch(this.url + balanceApi + address)
@@ -127,14 +127,14 @@ Cosmos.prototype.getBalance = function(address) {
 
 Cosmos.prototype.checkTxs = function(txhash) {
 	let txsApi = "";
-	if (this.chainId.indexOf("cosmoshub") != -1 ||
-		this.chainId.indexOf("kava") != -1 ||
-		this.chainId.indexOf("gaia") != -1 ||
-		this.chainId.indexOf("hupayx") != -1 ||
-		this.chainId.indexOf("owdin") != -1 ||
-		this.chainId.indexOf("peter") != -1) {
+	if (this.chainId.indexOf("cosmoshub") !== -1 ||
+		this.chainId.indexOf("kava") !== -1 ||
+		this.chainId.indexOf("gaia") !== -1 ||
+		this.chainId.indexOf("hupayx") !== -1 ||
+		this.chainId.indexOf("owdin") !== -1 ||
+		this.chainId.indexOf("peter") !== -1) {
 		txsApi = "/txs/";
-	} else if (this.chainId.indexOf("irishub") != -1) {
+	} else if (this.chainId.indexOf("irishub") !== -1) {
 		txsApi = "/txs/";
 	}
 	return fetch(this.url + txsApi + txhash)
@@ -143,14 +143,14 @@ Cosmos.prototype.checkTxs = function(txhash) {
 
 Cosmos.prototype.searchTxs = function(page, limit, address) {
 	let txsApi = "";
-	if (this.chainId.indexOf("cosmoshub") != -1 ||
-		this.chainId.indexOf("kava") != -1 ||
-		this.chainId.indexOf("gaia") != -1 ||
-		this.chainId.indexOf("hupayx") != -1 ||
-		this.chainId.indexOf("owdin") != -1 ||
-		this.chainId.indexOf("peter") != -1) {
+	if (this.chainId.indexOf("cosmoshub") !== -1 ||
+		this.chainId.indexOf("kava") !== -1 ||
+		this.chainId.indexOf("gaia") !== -1 ||
+		this.chainId.indexOf("hupayx") !== -1 ||
+		this.chainId.indexOf("owdin") !== -1 ||
+		this.chainId.indexOf("peter") !== -1) {
 		txsApi = "/txs?&";
-	} else if (this.chainId.indexOf("irishub") != -1) {
+	} else if (this.chainId.indexOf("irishub") !== -1) {
 		txsApi = "/txs?&";
 	}
 	return fetch(this.url + txsApi + "page=" + page + "&limit=" + limit + "&message.action=send&transfer.recipient=" + address)
@@ -302,38 +302,42 @@ Cosmos.prototype.NewStdMsg = function(input) {
 		}
 	} else if (input.type == "cosmos-sdk/MsgSubmitProposal") {
 		stdSignMsg.json =
-		{
-		  	account_number: String(input.account_number),
-			chain_id: this.chainId,
-			fee: {
-				amount: [
+			{
+				account_number: String(input.account_number),
+				chain_id: this.chainId,
+				fee: {
+					amount: [
+						{
+							amount: String(input.fee),
+							denom: input.feeDenom
+						}
+					],
+					gas: String(input.gas)
+				},
+				memo: input.memo,
+				msgs: [
 					{
-						amount: String(input.fee),
-						denom: input.feeDenom
+						type: input.type,
+						value: {
+							content :{
+								type: input.proposal_type,
+								value: {
+									title: input.title,
+									description: input.description
+								}
+							},
+							initial_deposit: [
+								{
+									amount: String(input.initialDepositAmount),
+									denom: input.initialDepositDenom
+								}
+							],
+							proposer: input.proposer,
+						}
 					}
 				],
-				gas: String(input.gas)
-			},
-			memo: input.memo,
-			msgs: [
-				{
-					type: input.type,
-					value: {
-						description: input.description,
-						initial_deposit: [
-	                        {
-	                        	amount: String(input.initialDepositAmount),
-	                            denom: input.initialDepositDenom
-	                        }
-	                    ],
-	                    proposal_type: input.proposal_type,
-	                    proposer: input.proposer,
-						title: input.title
-					}
-				}
-			],
-			sequence: String(input.sequence)
-		}
+				sequence: String(input.sequence)
+			}
 	} else if (input.type == "cosmos-sdk/MsgDeposit") {
 		stdSignMsg.json =
 		{
@@ -838,9 +842,9 @@ Cosmos.prototype.NewStdMsg = function(input) {
 Cosmos.prototype.sign = function(stdSignMsg, ecpairPriv, modeType = "sync") {
 	// The supported return types includes "block"(return after tx commit), "sync"(return afer CheckTx) and "async"(return right away).
 	let signMessage = new Object;
-	if (stdSignMsg.json.msgs[0].type == "irishub/bank/Send" ||
-		stdSignMsg.json.msgs[0].type == "irishub/stake/BeginUnbonding" ||
-		stdSignMsg.json.msgs[0].type == "irishub/stake/BeginRedelegate") {
+	if (stdSignMsg.json.msgs[0].type === "irishub/bank/Send" ||
+		stdSignMsg.json.msgs[0].type === "irishub/stake/BeginUnbonding" ||
+		stdSignMsg.json.msgs[0].type === "irishub/stake/BeginRedelegate") {
 		signMessage = stdSignMsg.jsonForSigningIrisTx;
 	} else {
 		signMessage = stdSignMsg.json;
@@ -850,12 +854,12 @@ Cosmos.prototype.sign = function(stdSignMsg, ecpairPriv, modeType = "sync") {
 	let signObj = secp256k1.sign(buf, ecpairPriv);
 	var signatureBase64 = Buffer.from(signObj.signature, 'binary').toString('base64');
 	let signedTx = new Object;
-	if (this.chainId.indexOf("cosmoshub") != -1 || 
-		this.chainId.indexOf("kava") != -1 ||
-		this.chainId.indexOf("gaia") != -1 ||
-		this.chainId.indexOf("hupayx") != -1 ||
-		this.chainId.indexOf("owdin") != -1 ||
-		this.chainId.indexOf("peter") != -1) {
+	if (this.chainId.indexOf("cosmoshub") !== -1 ||
+		this.chainId.indexOf("kava") !== -1 ||
+		this.chainId.indexOf("gaia") !== -1 ||
+		this.chainId.indexOf("hupayx") !== -1 ||
+		this.chainId.indexOf("owdin") !== -1 ||
+		this.chainId.indexOf("peter") !== -1) {
 		signedTx = {
 		    "tx": {
 		        "msg": stdSignMsg.json.msgs,
@@ -900,14 +904,14 @@ Cosmos.prototype.sign = function(stdSignMsg, ecpairPriv, modeType = "sync") {
 
 Cosmos.prototype.broadcast = function(signedTx) {
 	let broadcastApi = "";
-	if (this.chainId.indexOf("cosmoshub") != -1 || 
-		this.chainId.indexOf("kava") != -1 ||
-		this.chainId.indexOf("gaia") != -1 ||
-		this.chainId.indexOf("hupayx") != -1 ||
-		this.chainId.indexOf("owdin") != -1 ||
-		this.chainId.indexOf("peter") != -1) {
+	if (this.chainId.indexOf("cosmoshub") !== -1 ||
+		this.chainId.indexOf("kava") !== -1 ||
+		this.chainId.indexOf("gaia") !== -1 ||
+		this.chainId.indexOf("hupayx") !== -1 ||
+		this.chainId.indexOf("owdin") !== -1 ||
+		this.chainId.indexOf("peter") !== -1) {
 		broadcastApi = "/txs";
-	} else if (this.chainId.indexOf("irishub") != -1) {
+	} else if (this.chainId.indexOf("irishub") !== -1) {
 		broadcastApi = "/tx/broadcast";
 	}
 
@@ -923,9 +927,9 @@ Cosmos.prototype.broadcast = function(signedTx) {
 
 Cosmos.prototype.createAccounts = function(createAccountsTx) {
 	let createAccountsApi = "";
-	if (this.chainId.indexOf("hupayx") != -1 ||
-		this.chainId.indexOf("owdin") != -1 ||
-		this.chainId.indexOf("peter") != -1) {
+	if (this.chainId.indexOf("hupayx") !== -1 ||
+		this.chainId.indexOf("owdin") !== -1 ||
+		this.chainId.indexOf("peter") !== -1) {
 		createAccountsApi = "/keys";
 	}
 
@@ -941,9 +945,9 @@ Cosmos.prototype.createAccounts = function(createAccountsTx) {
 
 Cosmos.prototype.listAccounts = function() {
 	let listAccountsApi = "";
-	if (this.chainId.indexOf("hupayx") != -1 ||
-		this.chainId.indexOf("owdin") != -1 ||
-		this.chainId.indexOf("peter") != -1) {
+	if (this.chainId.indexOf("hupayx") !== -1 ||
+		this.chainId.indexOf("owdin") !== -1 ||
+		this.chainId.indexOf("peter") !== -1) {
 		listAccountsApi = "/keys";
 	}
 	return fetch(this.url + listAccountsApi)
@@ -952,9 +956,9 @@ Cosmos.prototype.listAccounts = function() {
 
 Cosmos.prototype.recoverAccounts = function(name, recoverAccountsTx) {
 	let recoverAccountsApi = "";
-	if (this.chainId.indexOf("hupayx") != -1 ||
-		this.chainId.indexOf("owdin") != -1 ||
-		this.chainId.indexOf("peter") != -1) {
+	if (this.chainId.indexOf("hupayx") !== -1 ||
+		this.chainId.indexOf("owdin") !== -1 ||
+		this.chainId.indexOf("peter") !== -1) {
 		recoverAccountsApi = "/keys/";
 	}
 
@@ -970,9 +974,9 @@ Cosmos.prototype.recoverAccounts = function(name, recoverAccountsTx) {
 
 Cosmos.prototype.deleteAccounts = function(name, deleteAccountsTx) {
     let deleteAccountsApi = "";
-    if (this.chainId.indexOf("hupayx") != -1 ||
-		this.chainId.indexOf("owdin") != -1 ||
-        this.chainId.indexOf("peter") != -1) {
+    if (this.chainId.indexOf("hupayx") !== -1 ||
+		this.chainId.indexOf("owdin") !== -1 ||
+        this.chainId.indexOf("peter") !== -1) {
         deleteAccountsApi = "/keys/";
     }
 
