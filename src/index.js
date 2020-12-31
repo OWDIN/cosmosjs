@@ -84,7 +84,7 @@ Cosmos.prototype.getAccounts = function(address) {
 		this.chainId.indexOf("gaia") !== -1 ||
 		this.chainId.indexOf("hupayx") !== -1 ||
 		this.chainId.indexOf("owdin") !== -1 ||
-		this.chainId.indexOf("peter") !== -1) {
+		this.chainId.indexOf("pandagram") !== -1) {
 		accountsApi = "/auth/accounts/";
 	} else if (this.chainId.indexOf("irishub") !== -1) {
 		accountsApi = "/bank/accounts/";
@@ -100,7 +100,7 @@ Cosmos.prototype.getDelegations = function(address) {
 		this.chainId.indexOf("gaia") !== -1 ||
 		this.chainId.indexOf("hupayx") !== -1 ||
 		this.chainId.indexOf("owdin") !== -1 ||
-		this.chainId.indexOf("peter") !== -1) {
+		this.chainId.indexOf("pandagram") !== -1) {
 		delegationsApi = "/staking/delegators/";
 	} else if (this.chainId.indexOf("irishub") !== -1) {
 		delegationsApi = "/staking/delegators/";
@@ -116,7 +116,7 @@ Cosmos.prototype.getBalance = function(address) {
 		this.chainId.indexOf("gaia") !== -1 ||
 		this.chainId.indexOf("hupayx") !== -1 ||
 		this.chainId.indexOf("owdin") !== -1 ||
-		this.chainId.indexOf("peter") !== -1) {
+		this.chainId.indexOf("pandagram") !== -1) {
 		balanceApi = "/bank/balances/";
 	} else if (this.chainId.indexOf("irishub") !== -1) {
 		balanceApi = "/bank/balances/";
@@ -132,7 +132,7 @@ Cosmos.prototype.checkTxs = function(txhash) {
 		this.chainId.indexOf("gaia") !== -1 ||
 		this.chainId.indexOf("hupayx") !== -1 ||
 		this.chainId.indexOf("owdin") !== -1 ||
-		this.chainId.indexOf("peter") !== -1) {
+		this.chainId.indexOf("pandagram") !== -1) {
 		txsApi = "/txs/";
 	} else if (this.chainId.indexOf("irishub") !== -1) {
 		txsApi = "/txs/";
@@ -148,7 +148,7 @@ Cosmos.prototype.searchTxs = function(page, limit, address) {
 		this.chainId.indexOf("gaia") !== -1 ||
 		this.chainId.indexOf("hupayx") !== -1 ||
 		this.chainId.indexOf("owdin") !== -1 ||
-		this.chainId.indexOf("peter") !== -1) {
+		this.chainId.indexOf("pandagram") !== -1) {
 		txsApi = "/txs?&";
 	} else if (this.chainId.indexOf("irishub") !== -1) {
 		txsApi = "/txs?&";
@@ -859,7 +859,7 @@ Cosmos.prototype.sign = function(stdSignMsg, ecpairPriv, modeType = "sync") {
 		this.chainId.indexOf("gaia") !== -1 ||
 		this.chainId.indexOf("hupayx") !== -1 ||
 		this.chainId.indexOf("owdin") !== -1 ||
-		this.chainId.indexOf("peter") !== -1) {
+		this.chainId.indexOf("pandagram") !== -1) {
 		signedTx = {
 		    "tx": {
 		        "msg": stdSignMsg.json.msgs,
@@ -909,7 +909,7 @@ Cosmos.prototype.broadcast = function(signedTx) {
 		this.chainId.indexOf("gaia") !== -1 ||
 		this.chainId.indexOf("hupayx") !== -1 ||
 		this.chainId.indexOf("owdin") !== -1 ||
-		this.chainId.indexOf("peter") !== -1) {
+		this.chainId.indexOf("pandagram") !== -1) {
 		broadcastApi = "/txs";
 	} else if (this.chainId.indexOf("irishub") !== -1) {
 		broadcastApi = "/tx/broadcast";
